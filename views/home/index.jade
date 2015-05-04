@@ -1,0 +1,22 @@
+extends ../default/layout
+block content
+	.container
+		.panel.panel-default
+			.panel-heading
+				h3.panel-title Upload file for translation
+			.panel-body
+				input.form-control(type="file" id="files" name="files" multiple)
+				br
+				.translate-controls
+					a.btn.btn-success#btn-translate-model Translate model
+				br
+				#msg(style="color:red")
+	.container
+		.panel.panel-default
+			.panel-heading
+				h3.panel-title Upload file for translation
+			.panel-body
+				h3 Urn list
+				h4 Click on an urn below to launch viewer
+				#list
+	

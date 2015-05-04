@@ -32,8 +32,13 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {
-    view: 'homepage'
+  'get /': 'TranslationApiController.renderHome',
+  'post /api/file':'TranslationApiController.parseUploadForm',
+  'post /api/translate':'TranslationApiController.translateFile',
+  'get /api/translate/progress/:urn':'TranslationApiController.translateProgress',
+  'get /api/token':'TranslationApiController.getToken',
+  'get /preview':{
+      'view':'viewer/index'
   }
 
   /***************************************************************************

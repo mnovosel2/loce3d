@@ -1,6 +1,6 @@
 /* global Autodesk */
 $(function () {
-	var tokenurl = 'http://' + window.location.host + '/api/token';
+	var tokenurl = '//' + window.location.host + '/api/token';
     var config = {
         environment: 'AutodeskProduction'
 		//environment : 'AutodeskStaging'

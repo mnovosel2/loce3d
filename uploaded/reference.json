@@ -1,0 +1,26 @@
+{
+  "master": "urn:adsk.objects:os.object:model2015-05-23-22-12-45-iw7mtgk6zbxcsgo7n3jkbocyyndd/Vrotorsutorom1.SLDASM",
+  "dependencies": [
+    {
+      "file": "urn:adsk.objects:os.object:model2015-05-23-22-12-45-iw7mtgk6zbxcsgo7n3jkbocyyndd/VZenskaosovina1.SLDPRT",
+      "metadata": {
+        "childPath": "VZenskaosovina1.SLDPRT",
+        "parentPath": "Vrotorsutorom1.SLDASM"
+      }
+    },
+    {
+      "file": "urn:adsk.objects:os.object:model2015-05-23-22-12-45-iw7mtgk6zbxcsgo7n3jkbocyyndd/VSipkarotora1.SLDPRT",
+      "metadata": {
+        "childPath": "VSipkarotora1.SLDPRT",
+        "parentPath": "Vrotorsutorom1.SLDASM"
+      }
+    },
+    {
+      "file": "urn:adsk.objects:os.object:model2015-05-23-22-12-45-iw7mtgk6zbxcsgo7n3jkbocyyndd/VMuskaosovina1.SLDPRT",
+      "metadata": {
+        "childPath": "VMuskaosovina1.SLDPRT",
+        "parentPath": "Vrotorsutorom1.SLDASM"
+      }
+    }
+  ]
+}

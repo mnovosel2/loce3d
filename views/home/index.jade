@@ -5,11 +5,12 @@ block content
 			.panel-heading
 				h3.panel-title Upload file for translation
 			.panel-body
-				input.form-control(type="file" id="files" name="files" multiple)
-				br
-				.translate-controls
-					a.btn.btn-success#btn-translate-model Translate model
-				br
+				form.file-upload
+					input.form-control(type="file" id="files" name="files" multiple)
+					br
+					.translate-controls
+						a.btn.btn-success#btn-translate-model Translate model
+					br
 				#msg(style="color:red")
 	.container
 		.panel.panel-default

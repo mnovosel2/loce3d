@@ -26,6 +26,7 @@ util.inherits(TranslationService, events.EventEmitter);
 
 TranslationService.prototype.authenticate = function() {
     var _this = this;
+    console.log(apiConfig);
     request.post(apiConfig.baseUrl + '/authentication/v1/authenticate', {
         form: apiConfig
     }, function(error, response, body) {

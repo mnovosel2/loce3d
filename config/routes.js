@@ -39,7 +39,10 @@ module.exports.routes = {
   'get /api/token':'TranslationApiController.getToken',
   'get /preview':{
       'view':'viewer/index'
-  }
+  },
+  'get /login':'LoginController.loginPage',
+  'get /register':'RegisterController.registerPage'
+
 
   /***************************************************************************
   *                                                                          *

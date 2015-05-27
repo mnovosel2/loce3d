@@ -1,0 +1,23 @@
+extends ../default/layout
+block content
+    .container
+        .row
+            form.col.s12.m8.l6.card-panel.center-align.login-form.offset-l3
+                h2.truncate Register
+                .row
+                    .input-field.col.s12
+                        input.validate#email(type="email")
+                        label(for="email") Email
+                .row
+                    .input-field.col.s12
+                        input.validate#username(type="text")
+                        label(for="username") Username
+                .row
+                    .input-field.col.s12
+                        input.validate#password(type="password")
+                        label(for="password") Password
+                .row
+                    .input-field.col.s12
+                        input.validate#password1(type="password")
+                        label(for="password1") Confirm password
+                a.waves-effect.waves-light.btn Register

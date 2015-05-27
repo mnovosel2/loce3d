@@ -25,7 +25,6 @@ $(function() {
             uploadedFiles.forEach(function(uploadedFile) {
                 $('#msg').text(uploadedFile.filename + ' uploaded');
             });
-
             translate(data);
         }).fail(function(xHr, ajaxOptions, error) {
             console.log(error);
@@ -56,7 +55,7 @@ function translate(data) {
     io.socket.post('/api/translate', data, function(resData, jwRes) {
     	console.log(resData);
         resData.forEach(function(file) {
-            $('#msg').append(file.name + ' translation requested...');
+            $('#msg').empty().append(file.name + ' translation requested...');
             setTimeout(function() {
                 translateProgress(file.urn);
             }, 5000);
@@ -73,8 +72,9 @@ function translateProgress(urn) {
         complete: null
     }).done(function(response) {
         console.log(response);
-        if (response.body.progress == 'complete') {
+        if (response.body.progress === 'complete') {
             addUrn(response.urn);
+            $('#msg').text('Processing finished. Click on urn below.');
         } else {
             var name = window.atob(urn),
                 filename = name.replace(/^.*[\\\/]/, '');

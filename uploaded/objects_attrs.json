@@ -1,22 +1,22 @@
 {
-  "master": "urn:adsk.objects:os.object:model2015-05-23-22-27-39-lrhetpvsukuec1tczljq7or2uoje/Vrotorsutorom1.SLDASM",
+  "master": "urn:adsk.objects:os.object:wp_core_1/Vrotorsutorom1.SLDASM",
   "dependencies": [
     {
-      "file": "urn:adsk.objects:os.object:model2015-05-23-22-27-39-lrhetpvsukuec1tczljq7or2uoje/VZenskaosovina1.SLDPRT",
+      "file": "urn:adsk.objects:os.object:wp_core_1/VZenskaosovina1.SLDPRT",
       "metadata": {
         "childPath": "VZenskaosovina1.SLDPRT",
         "parentPath": "Vrotorsutorom1.SLDASM"
       }
     },
     {
-      "file": "urn:adsk.objects:os.object:model2015-05-23-22-27-39-lrhetpvsukuec1tczljq7or2uoje/VSipkarotora1.SLDPRT",
+      "file": "urn:adsk.objects:os.object:wp_core_1/VSipkarotora1.SLDPRT",
       "metadata": {
         "childPath": "VSipkarotora1.SLDPRT",
         "parentPath": "Vrotorsutorom1.SLDASM"
       }
     },
     {
-      "file": "urn:adsk.objects:os.object:model2015-05-23-22-27-39-lrhetpvsukuec1tczljq7or2uoje/VMuskaosovina1.SLDPRT",
+      "file": "urn:adsk.objects:os.object:wp_core_1/VMuskaosovina1.SLDPRT",
       "metadata": {
         "childPath": "VMuskaosovina1.SLDPRT",
         "parentPath": "Vrotorsutorom1.SLDASM"

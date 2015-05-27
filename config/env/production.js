@@ -25,7 +25,8 @@ module.exports = {
             key: 'AKIAJ72FTPHAGJXAV76A',
             secret: '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',
             bucket: 'worxcorebucket',
-            endpoint: 's3-eu-west-1.amazonaws.com'
+            endpoint: 's3-eu-west-1.amazonaws.com',
+            region:'eu-west-1'
         }
     }
 };

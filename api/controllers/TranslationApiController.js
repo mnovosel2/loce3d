@@ -54,7 +54,7 @@ module.exports = {
             }
         });
 
-        console.log('Uploading...backend');
+        sails.log('Uploading...backend');
     },
     translateFile: function(req, res) {
         var bucket = 'model' + new Date().toISOString().replace(/T/, '-').replace(/:+/g, '-').replace(/\..+/, '') +
@@ -62,28 +62,28 @@ module.exports = {
             policy = 'transient',
             uploadedFiles = req.body.uploadedFiles;
         sails.log("SOCKET");
-        console.log(uploadedFiles);
+        sails.log(uploadedFiles);
         async.waterfall([
             function(cb) {
-                console.log('createBucket');
+                sails.log('createBucket');
                 new TranslationService(bucket).createBucket(policy)
                     .on('success', function(data) {
-                        console.log('Bucket created');
+                        sails.log('Bucket created');
                         cb(null, data);
                     }).on('fail', function(error) {
-                        console.log('Failed to create bucket');
+                        sails.log('Failed to create bucket');
                         cb(error);
                     });
             },
             function(data, cb1) {
-                console.log('Upload Async');
+                sails.log('Upload Async');
                 new TranslationService(bucket).uploadFile(uploadedFiles)
                     .on('success', function(data) {
-                        console.log('UPLOADED ');
+                        sails.log('UPLOADED ');
 
                         cb1(null, data);
                     }).on('fail', function(error) {
-                        console.log('Upload failed');
+                        sails.log('Upload failed');
                         cb1(error);
                     });
             },
@@ -92,7 +92,7 @@ module.exports = {
                         master: "",
                         dependencies: []
                     },
-                    masterFile = {},
+                    masterFile = [],
                     referenceFile = path.normalize(__dirname + '/../../uploaded/'),
                     objectInfo = {},
                     uploadedFileList = [];
@@ -105,9 +105,8 @@ module.exports = {
                         objectInfo = JSON.parse(uploadedObject);
                         if (path.extname(objectInfo.objects[0].key) === ".SLDASM") {
                             referenceObject.master = objectInfo.objects[0].id;
-                            masterFile = objectInfo.objects[0];
+                            masterFile.push(objectInfo);
                         }
-
                     });
                     data.forEach(function(uploadedObject) {
                         objectInfo = JSON.parse(uploadedObject);
@@ -116,7 +115,7 @@ module.exports = {
                                 file: objectInfo.objects[0].id,
                                 metadata: {
                                     childPath: objectInfo.objects[0].key,
-                                    parentPath: masterFile.key
+                                    parentPath: masterFile[0].objects[0].key
                                 }
                             });
                         }
@@ -124,33 +123,30 @@ module.exports = {
                     });
                     jf.writeFile(referenceFile + 'objects_attrs.json', referenceObject, function(err) {
                         if (err) {
-                            console.log(err);
+                            sails.log(err);
                         } else {
                             new TranslationService().setReferences(referenceFile + 'objects_attrs.json')
                                 .on('success', function(data) {
-                                    console.log('REF. UPLOAD');
-                                    cb2(null, uploadedFileList);
+                                    sails.log('REF. UPLOAD');
+                                    cb2(null, masterFile);
                                 })
                                 .on('fail', function(data) {
-                                    console.log('REF UPLOAD FAIL');
+                                    sails.log('REF UPLOAD FAIL');
                                     cb2(data);
                                 });
                         }
                     });
                 }
             },
-            function(data, cb3) {
-                console.log('Translation process');
-                var objectInfo = {},
-                    urn = "",
-                    objectsRegistered = [],
-                    numberOfFiles = data.length;
-                new TranslationService(bucket).register(data)
+            function(objectInfo, cb3) {
+                sails.log.info('Translation process started');
+                new TranslationService(bucket).register(objectInfo)
                     .on('success', function(data) {
-                        console.log(data);
+                    	sails.log('Data');
+                        sails.log(data);
                         cb3(null, data);
                     }).on('fail', function(error) {
-                        console.log('Translation failed');
+                        sails.log('Translation failed');
                         cb3(error);
                     });
             }
@@ -158,6 +154,8 @@ module.exports = {
             if (error) {
                 res.send(error);
             } else {
+            	sails.log('Results');
+            	sails.log(results);
                 res.send(results);
             }
         });

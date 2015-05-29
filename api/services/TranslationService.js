@@ -161,7 +161,6 @@ TranslationService.prototype.uploadFile = function(uploadedFiles) {
             var _this = this;
             async.map(uploadedFiles, function(file, callback) {
                 var urnEncoded = new Buffer(file.objects[0].id).toString('base64');
-                sails.log(urnEncoded);
                 request({
                     url: apiConfig.baseUrl + '/viewingservice/v1/register',
                     method: 'POST',

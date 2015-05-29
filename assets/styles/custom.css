@@ -1,0 +1,59 @@
+footer.page-footer {
+  margin-top: 0 !important; }
+
+.footer-links {
+  display: block !important; }
+
+.account {
+  font-size: 12px !important; }
+
+nav ul li a {
+  margin: 0 15px;
+  color: #2196f3 !important; }
+  nav ul li a .brand-logo {
+    color: #000;
+    margin-right: 45px; }
+
+.progress {
+  margin: 0 !important;
+  visibility: hidden; }
+
+.full-box {
+  height: 20%; }
+  .full-box .container {
+    padding: 5%; }
+
+.model-iframe {
+  margin-top: 20px;
+  margin-bottom: 60px;
+  border: none;
+  height: 350px;
+  width: 100%; }
+
+.upload-box {
+  padding: 10%; }
+
+#files {
+  width: 50px !important; }
+
+.validate {
+  color: #009688; }
+
+.view-model {
+  margin: 0 42%; }
+
+.login-form {
+  padding: 20px !important;
+  margin: 3% 0 10% 0; }
+
+.login-page {
+  background: url(http://i1138.photobucket.com/albums/n531/dx-toys/IronMan.jpg) center center fixed; }
+
+.register-page {
+  background: url(http://renderstuff.com/publication-files/0221/big-image21-wire-4.jpg) center center fixed; }
+
+.not-logged-warning {
+  font-style: italic;
+  display: block; }
+
+/*# sourceMappingURL=custom.css.map */

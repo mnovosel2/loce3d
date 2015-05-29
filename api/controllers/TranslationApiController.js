@@ -8,18 +8,20 @@
  * @description :: Server-side logic for managing TranslationApi
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
-var formidable = require('formidable'),
-    path = require('path'),
+var path = require('path'),
     fs = require('fs'),
     jf = require('jsonfile'),
     util = require('util'),
+    moment = require('moment'),
     s3 = require('skipper-s3'),
     apiConfig = sails.config.translationApi;
 
 module.exports = {
     renderHome: function(req, res) {
         new TranslationService().authenticate();
-        res.render('home/index');
+        res.render('home/index', {
+            user: req.user || false
+        });
     },
     getToken: function(req, res) {
         new TranslationService().authenticate().on('success', function(data) {
@@ -45,7 +47,7 @@ module.exports = {
         }
         req.file("files").upload(options, function(err, uploadedFiles) {
             if (err) {
-               res.send(500,err);
+                res.send(500, err);
             } else {
                 res.send(200, {
                     uploadedFiles: uploadedFiles,
@@ -60,7 +62,8 @@ module.exports = {
         var bucket = 'model' + new Date().toISOString().replace(/T/, '-').replace(/:+/g, '-').replace(/\..+/, '') +
             '-' + apiConfig.fetchedToken.access_token.toLowerCase().replace(/\W+/g, ''),
             policy = 'transient',
-            uploadedFiles = req.body.uploadedFiles;
+            uploadedFiles = req.body.uploadedFiles,
+            isAssembly = (req.body.isAssembly==="true"); //conversion to boolean 
         sails.log("SOCKET");
         sails.log(uploadedFiles);
         async.waterfall([
@@ -102,8 +105,9 @@ module.exports = {
                 } else if (data.length > 1) {
                     //TODO maybe requires refactoring. Second forEach because master must be present before children
                     data.forEach(function(uploadedObject) {
+                        sails.log.warn('FR1');
                         objectInfo = JSON.parse(uploadedObject);
-                        if (path.extname(objectInfo.objects[0].key) === ".SLDASM") {
+                        if ((path.extname(objectInfo.objects[0].key) === ".SLDASM") && isAssembly) {
                             referenceObject.master = objectInfo.objects[0].id;
                             masterFile.push(objectInfo);
                         }
@@ -111,38 +115,50 @@ module.exports = {
                     data.forEach(function(uploadedObject) {
                         objectInfo = JSON.parse(uploadedObject);
                         if (path.extname(objectInfo.objects[0].key) === ".SLDPRT") {
-                            referenceObject.dependencies.push({
-                                file: objectInfo.objects[0].id,
-                                metadata: {
-                                    childPath: objectInfo.objects[0].key,
-                                    parentPath: masterFile[0].objects[0].key
-                                }
-                            });
-                        }
-                        uploadedFileList.push(JSON.parse(uploadedObject));
-                    });
-                    jf.writeFile(referenceFile + 'objects_attrs.json', referenceObject, function(err) {
-                        if (err) {
-                            sails.log(err);
-                        } else {
-                            new TranslationService().setReferences(referenceFile + 'objects_attrs.json')
-                                .on('success', function(data) {
-                                    sails.log('REF. UPLOAD');
-                                    cb2(null, masterFile);
-                                })
-                                .on('fail', function(data) {
-                                    sails.log('REF UPLOAD FAIL');
-                                    cb2(data);
+                            sails.log(req.body.isAssembly);
+                            sails.log(isAssembly);
+                            if (isAssembly===true) {
+                                sails.log('FR2');
+                                referenceObject.dependencies.push({
+                                    file: objectInfo.objects[0].id,
+                                    metadata: {
+                                        childPath: objectInfo.objects[0].key,
+                                        parentPath: masterFile[0].objects[0].key
+                                    }
                                 });
+                            }
                         }
+                        uploadedFileList.push(objectInfo);
+
                     });
+                    if (isAssembly===true) {
+                        jf.writeFile(referenceFile + 'objects_attrs.json', referenceObject, function(err) {
+                            if (err) {
+                                sails.log(err);
+                            } else {
+                                new TranslationService().setReferences(referenceFile + 'objects_attrs.json')
+                                    .on('success', function(data) {
+                                        sails.log('REF. UPLOAD');
+                                        cb2(null, masterFile);
+                                    })
+                                    .on('fail', function(data) {
+                                        sails.log('REF UPLOAD FAIL');
+                                        cb2(data);
+                                    });
+                            }
+                        });
+                    } else {
+                        sails.log(uploadedFileList);
+                        cb2(null, uploadedFileList);
+                    }
                 }
             },
-            function(objectInfo, cb3) {
+            function(objectsInfo, cb3) {
                 sails.log.info('Translation process started');
-                new TranslationService(bucket).register(objectInfo)
+                sails.log(objectsInfo);
+                new TranslationService(bucket).register(objectsInfo)
                     .on('success', function(data) {
-                    	sails.log('Data');
+                        sails.log('Data');
                         sails.log(data);
                         cb3(null, data);
                     }).on('fail', function(error) {
@@ -154,8 +170,42 @@ module.exports = {
             if (error) {
                 res.send(error);
             } else {
-            	sails.log('Results');
-            	sails.log(results);
+                sails.log('Results');
+                if (req.isAuthenticated()) {
+                    User.native(function(err, user) {
+                        if (err) {
+                            sails.log(err);
+                        } else {
+                            user.find({
+                                email: req.user.email
+                            }).toArray(function(error, userFound) {
+                                if (error) {
+                                    sails.log("db err 2");
+                                    sails.log(error);
+                                } else {
+                                    results.forEach(function(result) {
+                                        result.uploadedAt = moment().utc().format("YYYY-MM-DD");
+                                    });
+                                    user.update({
+                                        _id: userFound[0]._id
+                                    }, {
+                                        $push: {
+                                            uploadedModels: {
+                                                $each: results
+                                            }
+                                        }
+                                    }, function(err, updatedUser) {
+                                        if (err) {
+                                            sails.log('db err 3');
+                                            sails.log(err);
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    });
+                }
+                sails.log(results);
                 res.send(results);
             }
         });

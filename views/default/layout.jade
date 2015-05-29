@@ -1,13 +1,59 @@
 doctype html
 html
   head
-    title Homepage
+    title Team Loce :: Foi Core 2015
     meta(name="viewport",content="width=device-width, initial-scale=1, maximum-scale=1")
-    link(rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css")
+    link(rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/css/materialize.min.css")
+    //do not touch style.css
     link(rel="stylesheet" href="/styles/style.css")
+    //do not touch this above
+
+
+    link(rel="stylesheet" href="/styles/sweetalert.css")
+    link(rel="stylesheet" href="/styles/custom.css")
   body
+    block navigation
+        nav.white
+                .nav-wrapper
+                    a.brand-logo.left Logo
+                    #nav-mobile.ul.right.hide-on-med-and-down
+                        ul
+                            li
+                                a(href="/") Home
+                            if user    
+                                li
+                                    a(href="/Workspace") Workspace
+                            if !user
+                                li    
+                                    a(href="/login") Sign in
+                            if user
+                                li 
+                                    a(href="/logout") Logout
+
+
     block content
+
+    block footer
+        footer.page-footer.blue.lighten-2
+            .container
+                .row
+                    .col.l6.s12
+                        h5.white-text 3D model browsing platform
+                        p.grey-text.text-lighten-3 Foi Core 2015
+                    .col.l4.offser-12.s12
+                        h5.white-text Site
+                        ul
+                            li
+                                a.footer-links.grey-text.text-lighten-3(href="#!") Home
+                                a.footer-links.grey-text.text-lighten-3(href="#!") Browse
+                                a.footer-links.grey-text.text-lighten-3(href="#!") Login
+            .footer-copyright.blue.lighten-1
+                .container Team Loce 2015
+
+
+
     script(src="//code.jquery.com/jquery-2.1.2.min.js")
+    script(src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js")
     script(src="/js/lmvworker.min.js")
     script(src="/js/adsk_three.min.js")
     script(src="https://developer.api.autodesk.com/viewingservice/v1/viewers/viewer3D.min.js")
@@ -15,4 +61,5 @@ html
     script(src="/js/Autodesk.ADN.Toolkit.Viewer.js")
     script(src="/js/dependencies/sails.io.js")
     script(src="/js/script.js")
+    script(src="/js/sweetalert.min.js")
     block custom-scripts

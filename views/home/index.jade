@@ -1,23 +1,31 @@
 extends ../default/layout
 block content
-	.container
-		.panel.panel-default
-			.panel-heading
-				h3.panel-title Upload file for translation
-			.panel-body
-				form.file-upload
-					input.form-control(type="file" id="files" name="files" multiple)
-					br
-					.translate-controls
-						a.btn.btn-success#btn-translate-model Translate model
-					br
-				#msg(style="color:red")
-	.container
-		.panel.panel-default
-			.panel-heading
-				h3.panel-title Upload file for translation
-			.panel-body
-				h3 Urn list
-				h4 Click on an urn below to launch viewer
-				#list
-	
+    .upload-box
+        .container
+            .row
+                .col.s12
+                    h1.header.center-on-small-only.center-align Upload files for translation*
+                    form.file-upload
+                        .file-field.input-field
+                            input.file-path.validate#file-text(type="text" readonly)
+                            .btn
+                                span Files
+                                input.blue.lighten-1(type="file" id="files" name="files" multiple)
+                        br
+                    .translate-controls.center
+                        a.btn.blue.lighten-1#btn-translate-model Translate model
+                        br
+                    input(type="checkbox" name="assembly-structure" id="assembly-structure").assembly-structure
+                    label(for="assembly-structure") Check this box if your model consists of multiple files
+                    span.not-logged-warning *All models will be lost at refresh unless you sign in
+                .col.s12
+                    h5.center-align#msg(style="color:#009688")
+    .progress.progress-bar
+        .indeterminate
+
+    .grey.lighten-3.full-box
+        .container
+            .col.s12
+                h3 Uploaded models
+                h4.light.grey-text.text-lighten-1.center-on-small-only Click on an button below to view models in fullscreen
+                .row#list

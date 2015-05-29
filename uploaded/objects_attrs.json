@@ -1,25 +1,25 @@
 {
-  "master": "urn:adsk.objects:os.object:wp_core_1/Vrotorsutorom1.SLDASM",
+  "master": "urn:adsk.objects:os.object:model2015-05-29-14-16-30-hplrnf0oucyf5pssb1efnhq2yiig/d04d3023-af0c-46ce-86b3-cb2e7847f3a0.SLDASM",
   "dependencies": [
     {
-      "file": "urn:adsk.objects:os.object:wp_core_1/VZenskaosovina1.SLDPRT",
+      "file": "urn:adsk.objects:os.object:model2015-05-29-14-16-30-hplrnf0oucyf5pssb1efnhq2yiig/fa757ffd-6747-4d3c-a69f-4ee9d225037d.SLDPRT",
       "metadata": {
-        "childPath": "VZenskaosovina1.SLDPRT",
-        "parentPath": "Vrotorsutorom1.SLDASM"
+        "childPath": "fa757ffd-6747-4d3c-a69f-4ee9d225037d.SLDPRT",
+        "parentPath": "d04d3023-af0c-46ce-86b3-cb2e7847f3a0.SLDASM"
       }
     },
     {
-      "file": "urn:adsk.objects:os.object:wp_core_1/VSipkarotora1.SLDPRT",
+      "file": "urn:adsk.objects:os.object:model2015-05-29-14-16-30-hplrnf0oucyf5pssb1efnhq2yiig/6ffdf822-8284-4966-9400-ea85bfca8446.SLDPRT",
       "metadata": {
-        "childPath": "VSipkarotora1.SLDPRT",
-        "parentPath": "Vrotorsutorom1.SLDASM"
+        "childPath": "6ffdf822-8284-4966-9400-ea85bfca8446.SLDPRT",
+        "parentPath": "d04d3023-af0c-46ce-86b3-cb2e7847f3a0.SLDASM"
       }
     },
     {
-      "file": "urn:adsk.objects:os.object:wp_core_1/VMuskaosovina1.SLDPRT",
+      "file": "urn:adsk.objects:os.object:model2015-05-29-14-16-30-hplrnf0oucyf5pssb1efnhq2yiig/041496e0-bd6e-44b2-8f46-b18a795d4db5.SLDPRT",
       "metadata": {
-        "childPath": "VMuskaosovina1.SLDPRT",
-        "parentPath": "Vrotorsutorom1.SLDASM"
+        "childPath": "041496e0-bd6e-44b2-8f46-b18a795d4db5.SLDPRT",
+        "parentPath": "d04d3023-af0c-46ce-86b3-cb2e7847f3a0.SLDASM"
       }
     }
   ]

@@ -18,6 +18,18 @@ module.exports = {
   			required:true,
   			type:'string'
   		},
+  		firstname:{
+  			type:'string',
+  			required:true
+  		},
+  		lastname:{
+  			type:'string',
+  			required:true
+  		},
+      uploadedModels:{
+        type:'array',
+        defaultsTo:[]
+      },
   		toJSON:function(){
   			var obj=this.toObject();
   			delete obj.password;

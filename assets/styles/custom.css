@@ -10,9 +10,9 @@ footer.page-footer {
 nav ul li a {
   margin: 0 15px;
   color: #2196f3 !important; }
-  nav ul li a .brand-logo {
-    color: #000;
-    margin-right: 45px; }
+
+nav .brand-logo {
+  margin-left: 120px; }
 
 .progress {
   margin: 0 !important;
@@ -31,6 +31,7 @@ nav ul li a {
   width: 100%; }
 
 .upload-box {
+  background: url("../images/background.jpg") center center fixed;
   padding: 10%; }
 
 #files {

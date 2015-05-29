@@ -1,8 +1,11 @@
 extends ../default/layout
 block content
-	ul
-		if user.uploadedModels
-			each item in user.uploadedModels
-				li
-					p= item.name
-					a(href= url+'preview?urn='+item.urn target="_blank") Preview
+    .container
+        .row
+            if user.uploadedModels
+                each item in user.uploadedModels
+                    .col.s12.m6
+                        .card(style="position:relative")
+                            p.card-title.center-align(style="color:#000")= item.name
+                            .card-action
+                                a.center-align(href= url + 'preview?urn=' + item.urn target="_blank") Preview

@@ -34,6 +34,9 @@ nav .brand-logo {
   background: url("../images/background.jpg") center center fixed;
   padding: 10%; }
 
+#file-text {
+  padding-left: 30px; }
+
 #files {
   width: 50px !important; }
 
@@ -54,6 +57,7 @@ nav .brand-logo {
   background: url(http://renderstuff.com/publication-files/0221/big-image21-wire-4.jpg) center center fixed; }
 
 .not-logged-warning {
+  font-size: 12px !important;
   font-style: italic;
   display: block; }
 
@@ -62,10 +66,10 @@ nav .brand-logo {
   top: 0;
   z-index: 999;
   display: none; }
-
-.viewer-options ul {
-  margin: 0 !important;
-  padding: 3px !important; }
+  .viewer-options ul li a {
+    margin: 5px 15px;
+    padding: 3px !important;
+    width: 90%; }
 
 .pdf-warning {
   width: 200px;
@@ -74,8 +78,11 @@ nav .brand-logo {
 .pdf-container {
   display: none;
   background: #C6C6C6; }
+  .pdf-container a {
+    color: #fff; }
 
-.pdf-container a {
-  color: white; }
+input[type=text].invalid {
+  border-bottom: 1px solid #9e9e9e !important;
+  box-shadow: none; }
 
 /*# sourceMappingURL=custom.css.map */

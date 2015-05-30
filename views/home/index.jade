@@ -15,9 +15,10 @@ block content
                     .translate-controls.center
                         a.btn.blue.lighten-1#btn-translate-model Translate model
                         br
-                    input(type="checkbox" name="assembly-structure" id="assembly-structure").assembly-structure
-                    label(for="assembly-structure") Check this box if your model consists of multiple files
-                    span.not-logged-warning *All models will be lost at refresh unless you sign in
+                    .center-align(style="margin-top:30px")
+                        input(type="checkbox" name="assembly-structure" id="assembly-structure").assembly-structure
+                        label(for="assembly-structure") Check this box if your model consists of multiple files
+                    div.center-align.not-logged-warning *All models will be lost at refresh unless you sign in
                 .col.s12
                     h5.center-align#msg(style="color:#009688")
     .progress.progress-bar

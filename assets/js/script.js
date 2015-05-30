@@ -55,11 +55,26 @@ $(function() {
     $('.generate-3dpdf').on('click',function(e){
         var linkToPdf="";
         e.preventDefault();
-        $.post('generate/3dpdf',function(data,status,jqXHR){
-            linkToPdf='<a href="'+data.url+'" target="_blank">'+data.name+'</a><br>';
+        $.post('/generate/3dpdf',function(data,status,jqXHR){
+            linkToPdf='<br><a class="btn" href="'+ data.url +'" target="_blank">Download</a><br>';
+
+            swal({
+                title: "3D pdf is ready",
+                text: "<a href="+data.url+" target=_blank>Click HERE to view 3Dpdf</a>",
+                type: "success",
+                html: true,
+                showCancelButton: false,
+                confirmButtonColor: "#009688",
+                confirmButtonText: "OK"
+            });
+            var audio = new Audio('/audio/beep.mp3');
+            audio.play();
             $('.pdf-container').show().append(linkToPdf);
         });
     });
+
+        $('.tooltipped').tooltip({delay: 50});
+
 });
 
 function addUrn(urn) {
@@ -72,7 +87,7 @@ function addUrn(urn) {
     });
 }
 function translate(data) {
-    console.log('translation started');
+    console.log(' Translation started ');
     data.isAssembly = isAssembly;
     console.log(data);
     $.ajax({
@@ -82,7 +97,7 @@ function translate(data) {
     }).done(function(resData) {
         console.log(resData);
         resData.forEach(function(file) {
-            $('#msg').append(file.name + ' translation requested...');
+            $('#msg').append(/*file.name + */'<br><br> Translation requested... ');
             setTimeout(function() {
                 translateProgress(file.urn);
             }, 5000);

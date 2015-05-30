@@ -37,6 +37,7 @@ module.exports.routes = {
   'post /api/translate':'TranslationApiController.translateFile',
   'get /api/translate/progress/:urn':'TranslationApiController.translateProgress',
   'get /api/token':'TranslationApiController.getToken',
+  'post /generate/3dpdf':'TranslationApiController.generate3dpdf',
   'get /preview':{
       'view':'viewer/index'
   },

@@ -1,25 +1,25 @@
 {
-  "master": "urn:adsk.objects:os.object:model2015-05-29-14-16-30-hplrnf0oucyf5pssb1efnhq2yiig/d04d3023-af0c-46ce-86b3-cb2e7847f3a0.SLDASM",
+  "master": "urn:adsk.objects:os.object:model2015-05-30-20-05-14-f1w9xuccfvk6ihzyx0r70zfrci23/c0368995-63ef-40e0-bdfe-e16b4e38c385.SLDASM",
   "dependencies": [
     {
-      "file": "urn:adsk.objects:os.object:model2015-05-29-14-16-30-hplrnf0oucyf5pssb1efnhq2yiig/fa757ffd-6747-4d3c-a69f-4ee9d225037d.SLDPRT",
+      "file": "urn:adsk.objects:os.object:model2015-05-30-20-05-14-f1w9xuccfvk6ihzyx0r70zfrci23/bba14c13-a9c0-4a70-8c70-cbdb1a5654b4.SLDPRT",
       "metadata": {
-        "childPath": "fa757ffd-6747-4d3c-a69f-4ee9d225037d.SLDPRT",
-        "parentPath": "d04d3023-af0c-46ce-86b3-cb2e7847f3a0.SLDASM"
+        "childPath": "bba14c13-a9c0-4a70-8c70-cbdb1a5654b4.SLDPRT",
+        "parentPath": "c0368995-63ef-40e0-bdfe-e16b4e38c385.SLDASM"
       }
     },
     {
-      "file": "urn:adsk.objects:os.object:model2015-05-29-14-16-30-hplrnf0oucyf5pssb1efnhq2yiig/6ffdf822-8284-4966-9400-ea85bfca8446.SLDPRT",
+      "file": "urn:adsk.objects:os.object:model2015-05-30-20-05-14-f1w9xuccfvk6ihzyx0r70zfrci23/c45b9b5e-6ff0-4aee-8a41-aac2fbeeec2a.SLDPRT",
       "metadata": {
-        "childPath": "6ffdf822-8284-4966-9400-ea85bfca8446.SLDPRT",
-        "parentPath": "d04d3023-af0c-46ce-86b3-cb2e7847f3a0.SLDASM"
+        "childPath": "c45b9b5e-6ff0-4aee-8a41-aac2fbeeec2a.SLDPRT",
+        "parentPath": "c0368995-63ef-40e0-bdfe-e16b4e38c385.SLDASM"
       }
     },
     {
-      "file": "urn:adsk.objects:os.object:model2015-05-29-14-16-30-hplrnf0oucyf5pssb1efnhq2yiig/041496e0-bd6e-44b2-8f46-b18a795d4db5.SLDPRT",
+      "file": "urn:adsk.objects:os.object:model2015-05-30-20-05-14-f1w9xuccfvk6ihzyx0r70zfrci23/7660d112-2e2d-4051-889e-4f2c048589c9.SLDPRT",
       "metadata": {
-        "childPath": "041496e0-bd6e-44b2-8f46-b18a795d4db5.SLDPRT",
-        "parentPath": "d04d3023-af0c-46ce-86b3-cb2e7847f3a0.SLDASM"
+        "childPath": "7660d112-2e2d-4051-889e-4f2c048589c9.SLDPRT",
+        "parentPath": "c0368995-63ef-40e0-bdfe-e16b4e38c385.SLDASM"
       }
     }
   ]

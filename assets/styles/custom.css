@@ -57,4 +57,25 @@ nav .brand-logo {
   font-style: italic;
   display: block; }
 
+.viewer-options {
+  position: absolute;
+  top: 0;
+  z-index: 999;
+  display: none; }
+
+.viewer-options ul {
+  margin: 0 !important;
+  padding: 3px !important; }
+
+.pdf-warning {
+  width: 200px;
+  background: #efefef; }
+
+.pdf-container {
+  display: none;
+  background: #C6C6C6; }
+
+.pdf-container a {
+  color: white; }
+
 /*# sourceMappingURL=custom.css.map */

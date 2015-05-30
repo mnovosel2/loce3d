@@ -13,7 +13,8 @@ var path = require('path'),
     jf = require('jsonfile'),
     util = require('util'),
     moment = require('moment'),
-    s3 = require('skipper-s3'),
+    skipperS3 = require('skipper-s3'),
+    request = require('request'),
     apiConfig = sails.config.translationApi;
 
 module.exports = {
@@ -36,7 +37,7 @@ module.exports = {
             uploadDir = path.normalize(__dirname + '/../../uploaded/'),
             options = {};
         if (apiConfig.usingS3) {
-            apiConfig.s3.adapter = s3;
+            apiConfig.s3.adapter = skipperS3;
             options = apiConfig.s3;
         } else {
             options = {
@@ -61,9 +62,9 @@ module.exports = {
     translateFile: function(req, res) {
         var bucket = 'model' + new Date().toISOString().replace(/T/, '-').replace(/:+/g, '-').replace(/\..+/, '') +
             '-' + apiConfig.fetchedToken.access_token.toLowerCase().replace(/\W+/g, ''),
-            policy = 'transient',
+            policy = (req.user) ? 'persistent' : 'transient',
             uploadedFiles = req.body.uploadedFiles,
-            isAssembly = (req.body.isAssembly==="true"); //conversion to boolean 
+            isAssembly = (req.body.isAssembly === "true"); //conversion to boolean 
         sails.log("SOCKET");
         sails.log(uploadedFiles);
         async.waterfall([
@@ -117,7 +118,7 @@ module.exports = {
                         if (path.extname(objectInfo.objects[0].key) === ".SLDPRT") {
                             sails.log(req.body.isAssembly);
                             sails.log(isAssembly);
-                            if (isAssembly===true) {
+                            if (isAssembly === true) {
                                 sails.log('FR2');
                                 referenceObject.dependencies.push({
                                     file: objectInfo.objects[0].id,
@@ -131,7 +132,7 @@ module.exports = {
                         uploadedFileList.push(objectInfo);
 
                     });
-                    if (isAssembly===true) {
+                    if (isAssembly === true) {
                         jf.writeFile(referenceFile + 'objects_attrs.json', referenceObject, function(err) {
                             if (err) {
                                 sails.log(err);
@@ -218,5 +219,27 @@ module.exports = {
             }).on('fail', function(error) {
                 res.send(error);
             });
-    }
+    },
+    generate3dpdf: function(req, res) {
+        request({
+            url: 'http://3dpdf.apphb.com/api/pdf/model',
+            method: 'POST',
+            json:{
+                'uri':'https://s3-eu-west-1.amazonaws.com/worxcorebucket/Joystick.u3d'
+            }
+        }, function(error, response, body) {
+            var fileName="",
+                parsedUrl="";
+            if (!error && response.statusCode == 200) {
+                parsedUrl=path.parse(body.fileUrl);
+                fileName=parsedUrl.name;
+                res.send(200,{
+                    url:body.fileUrl,
+                    name:fileName
+                });
+            } else {
+                console.log(body);
+            }
+        });
+}
 };

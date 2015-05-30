@@ -48,7 +48,7 @@ module.exports = {
 				return res.send(500,err);
 			}else{
 				sails.log(user);
-				return res.send(200,'User '+user.firstname+' created');
+				return res.redirect('login');
 			}
 		});
 	}

@@ -2,8 +2,20 @@ extends ../default/layout
 block navigation
 
 block content
-    #viewer
+	.viewer-options
+		ul
+			li
+				a.btn.blue.export-to-png(href="#" target="_blank") Export to image
+		ul
+			li
+				a.btn.blue.generate-3dpdf(href="#") Generate 3DPdf
+				.pdf-container
+					p.pdf-container-header Created 3DPdf
+				p.pdf-warning 
+					| If you are presented with only blank pdf, your in-browser PDF reader
+					| probably does not support 3Dpdf. Please download file on your computer and use valid
+					| 3Dpdf reader (Adobe Acrobat and similar)
+	#viewer
 block footer
-
 block custom-scripts
-    script(src="/js/viewer.js")
+	script(src="/js/viewer.js")

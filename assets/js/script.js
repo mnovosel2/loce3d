@@ -52,6 +52,14 @@ $(function() {
             addUrn(urn);
         }
     });
+    $('.generate-3dpdf').on('click',function(e){
+        var linkToPdf="";
+        e.preventDefault();
+        $.post('generate/3dpdf',function(data,status,jqXHR){
+            linkToPdf='<a href="'+data.url+'" target="_blank">'+data.name+'</a><br>';
+            $('.pdf-container').show().append(linkToPdf);
+        });
+    });
 });
 
 function addUrn(urn) {
